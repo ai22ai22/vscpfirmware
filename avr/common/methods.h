@@ -59,12 +59,12 @@ void vscp_getMatrixInfo( char *pData );
 
 // prototypes defined but no functions in .c
 
-void SendInformationEvent( uint8_t idx, uint8_t eventClass, uint8_t eventTypeId );
+//void SendInformationEvent( uint8_t idx, uint8_t eventClass, uint8_t eventTypeId );
+//moved to application
 
-/*
 void SendInformationEventExtended
 	(uint8_t priority, uint8_t zone, uint8_t subzone, uint8_t idx, 
 	uint8_t eventClass, uint8_t eventTypeId );
 
-*/
+
 #endif

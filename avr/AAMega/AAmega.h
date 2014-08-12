@@ -70,6 +70,7 @@
 
 
 
+void SendInformationEvent( uint8_t idx, uint8_t eventClass, uint8_t eventTypeId );
 
 // debug routines
 void sendCharHex (char data);

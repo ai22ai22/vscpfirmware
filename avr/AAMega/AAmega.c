@@ -20,6 +20,7 @@
 
 #include <avr/pgmspace.h>
 #include <avr/interrupt.h>
+#include <avr/eeprom.h>
 #include "methods.h"
 #include <stdio.h>
 #include <string.h>
@@ -365,12 +366,9 @@ static void init_app_eeprom( void )
 // only routines that are hardware dependant are left here
 ///////////////////////////////////////////////////////////////////////////////
 
-
-
 ///////////////////////////////////////////////////////////////////////////////
 //                        VSCP Required Methods
 //////////////////////////////////////////////////////////////////////////////
-
 
 ///////////////////////////////////////////////////////////////////////////////
 // vscp_readAppReg
@@ -567,7 +565,6 @@ static void doDM( void )
 ///////////////////////////////////////////////////////////////////////////////
 // SendInformationEvent
 //
-
 void SendInformationEvent( uint8_t idx, uint8_t eventClass, uint8_t eventTypeId )
 {
     vscp_omsg.priority = VSCP_PRIORITY_MEDIUM;
@@ -582,29 +579,28 @@ void SendInformationEvent( uint8_t idx, uint8_t eventClass, uint8_t eventTypeId 
     vscp_sendEvent();	// Send data
 }
 
+
+uint32_t vscp_getFamilyCode(void)
+{
+	return 0;
+}
+
+uint32_t vscp_getFamilyType(void)
+{
+	return 0;
+}
+
+void vscp_restoreDefaults(void)
+{
+// to do
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 //                       end of VSCP Required Methods
 //////////////////////////////////////////////////////////////////////////////
 
-///////////////////////////////////////////////////////////////////////////////
-// SendInformationEventExtended same function as SendInformationEvent but 
-// with more options to have more control over the events sent
-// SendInformationEvent is not altered to remain compatible with common routines
 
-void SendInformationEventExtended(uint8_t priority, uint8_t zone, uint8_t subzone, uint8_t idx, uint8_t eventClass, uint8_t eventTypeId )
-{
-    vscp_omsg.priority = priority;
-    vscp_omsg.flags = VSCP_VALID_MSG + 3;
-    vscp_omsg.class = eventClass;
-    vscp_omsg.type = eventTypeId;
-
-    vscp_omsg.data[ 0 ] = idx;	// Register
-    vscp_omsg.data[ 1 ] = zone;
-    vscp_omsg.data[ 2 ] = subzone;
-
-    vscp_sendEvent();	// Send data
-}
 
 ///////////////////////////////////////////////////////////////////////////////
 
