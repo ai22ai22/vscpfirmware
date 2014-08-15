@@ -93,7 +93,7 @@ int8_t getVSCPFrame( uint16_t *pvscpclass,
 int readEEPROM( uint8_t addr )
 {
 	// we now use the avrlib-eeprom functions
-	uint8_t test = eeprom_read_byte( &addr );
+	uint8_t test = eeprom_read_byte( addr );
 	return test;
 }
 
@@ -104,7 +104,7 @@ int readEEPROM( uint8_t addr )
 int writeEEPROM( uint8_t addr, uint8_t data )
 {
 	// we now use the avrlib-eeprom update functions, saves some write cycles
-	eeprom_update_byte(&addr, data);
+	eeprom_update_byte(addr, data);
 	return TRUE;
 }
 

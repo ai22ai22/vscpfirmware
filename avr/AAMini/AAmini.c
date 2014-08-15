@@ -21,6 +21,7 @@
 */
 #include <avr/pgmspace.h>
 #include <avr/interrupt.h>
+#include <avr/eeprom.h>
 #include "methods.h"
 #include <stdio.h>
 #include <string.h>
@@ -637,6 +638,20 @@ static void doDM( void )
 }
 
 
+uint32_t vscp_getFamilyCode(void)
+{
+	return 0;
+}
+
+uint32_t vscp_getFamilyType(void)
+{
+	return 0;
+}
+
+void vscp_restoreDefaults(void)
+{
+// to do
+}
 ///////////////////////////////////////////////////////////////////////////////
 // SendInformationEvent
 //
@@ -664,7 +679,7 @@ void SendInformationEvent( uint8_t idx, uint8_t eventClass, uint8_t eventTypeId 
 // SendInformationEventExtended same function as SendInformationEvent but 
 // with more options to have more control over the events sent
 // SendInformationEvent is not altered to remain compatible with common routines
-
+/*
 void SendInformationEventExtended(uint8_t priority, uint8_t zone, uint8_t subzone, uint8_t idx, uint8_t eventClass, uint8_t eventTypeId )
 {
     vscp_omsg.priority = priority;
@@ -678,7 +693,7 @@ void SendInformationEventExtended(uint8_t priority, uint8_t zone, uint8_t subzon
 
     vscp_sendEvent();	// Send data
 }
-
+*/
 ///////////////////////////////////////////////////////////////////////////////
 
 // doWork
